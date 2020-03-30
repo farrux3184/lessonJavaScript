@@ -5,7 +5,7 @@ let mission = 800000;
 let money = +prompt('ваш месячный доход');
 let addExpenses = prompt('Перечислите возможные расходы за месяц');
 let deposit = confirm('У вас есть депозит в банке?');
-let expenses1 = prompt('Введите обязательную статью расходов?');
+let expenses1 = prompt('Введите обязательную статью расходов');
 let emount1 = +prompt('Во сколько это обойдется?');
 let expenses2 = prompt('укажите еще один обязательный расход');
 let emount2 = +prompt('во сколько это обходится');
@@ -31,17 +31,12 @@ console.log('обязательный расход №2 руб: ', emount2);
 console.log('месячный бюджет руб:', budgetMonth);
 console.log('дневной бюджет руб:', Math.floor(budgetDay));
 console.log('месяцев до цели: ', Math.ceil(mission2));
-switch (resul) {
-  case true:
-    switch (result2) {
-      case true:
-        console.log('“У вас высокий уровень дохода”');
-        break;
-      case false:
-        console.log('“К сожалению у вас уровень дохода ниже среднего”');
-        break;
-    }
-    break;
-  default:
-    console.log('“Что то пошло не так”');
+if (budgetDay > 1200) {
+  console.log('“У вас высокий уровень дохода”');  
+} 
+else if (budgetDay > 600) {
+  console.log('“К сожалению у вас уровень дохода ниже среднего”');
+}
+else  {
+console.log('“Что то пошло не так”');
 }
