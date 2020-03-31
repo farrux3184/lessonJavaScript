@@ -32,11 +32,12 @@ console.log('месячный бюджет руб:', budgetMonth);
 console.log('дневной бюджет руб:', Math.floor(budgetDay));
 console.log('месяцев до цели: ', Math.ceil(mission2));
 if (budgetDay > 1200) {
-  console.log('“У вас высокий уровень дохода”');  
-} 
-else if (budgetDay > 600) {
-  console.log('“К сожалению у вас уровень дохода ниже среднего”');
+  console.log('У вас высокий уровень дохода');
+} else if (budgetDay > 600 && budgetDay < 1200) {
+  console.log('У вас средний уровень дохода');
+} else if (budgetDay > 0 && budgetDay < 600) {
+  console.log('К сожалению у вас уровень дохода ниже среднего');
+} else if (budgetDay => 0) {
+  console.log('Что-то пошло не так!');
 }
-else  {
-console.log('“Что то пошло не так”');
-}
+
