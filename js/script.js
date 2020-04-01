@@ -1,9 +1,5 @@
 'use strict';
 let mission = 800000;
-// временна стоят 
-// let emount1 = 25000;
-// let emount2 = 25000;
-// let money = 100000;
 let money = +prompt('ваш месячный доход');
 let addExpenses = prompt('Перечислите возможные расходы за месяц');
 let expenses1 = prompt('Введите обязательную статью расходов');
