@@ -40,7 +40,7 @@ const getStatusIncome = function(){
     return('У вас средний уровень дохода');
   } else if (budgetDay > 0 && budgetDay < 600) {
     return('К сожалению у вас уровень дохода ниже среднего');
-  } else if (budgetDay >= 0) {
+  } else if (budgetDay < 0) {
     return('Что-то пошло не так!');
   }
 };
