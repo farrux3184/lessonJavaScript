@@ -1,9 +1,5 @@
 'use strict';
 let mission = 800000;
-// временна стоят 
-// let emount1 = 25000;
-// let emount2 = 25000;
-// let money = 100000;
 let money = +prompt('ваш месячный доход');
 let addExpenses = prompt('Перечислите возможные расходы за месяц');
 let expenses1 = prompt('Введите обязательную статью расходов');
@@ -11,17 +7,17 @@ let emount1 = +prompt('Во сколько это обойдется?');
 let expenses2 = prompt('укажите еще один обязательный расход');
 let emount2 = +prompt('во сколько это обходится');
 let getExpensesMonth = emount2 + emount1;
-function Expens(emount1, emount2){
+function expens(emount1, emount2){
   return money - (emount1 + emount2);
 };
-const getAccumulatedMonth = Expens(emount1, emount2)
+const getAccumulatedMonth = expens(emount1, emount2)
 console.log(getAccumulatedMonth);
 let accumulatedMonth  = getAccumulatedMonth;
 console.log(accumulatedMonth);
-function TargetMonth(mission, getAccumulatedMonth){
+function targetMonth(mission, getAccumulatedMonth){
   return (mission / getAccumulatedMonth);
 };
-const getTargetMonth = TargetMonth(mission, getAccumulatedMonth);
+const getTargetMonth = targetMonth(mission, getAccumulatedMonth);
 console.log(getTargetMonth);
 const budgetDay = accumulatedMonth / 30;
 const showTypeOf = function (data) {
@@ -44,7 +40,7 @@ const getStatusIncome = function(){
     return('У вас средний уровень дохода');
   } else if (budgetDay > 0 && budgetDay < 600) {
     return('К сожалению у вас уровень дохода ниже среднего');
-  } else if (budgetDay >= 0) {
+  } else if (budgetDay < 0) {
     return('Что-то пошло не так!');
   }
 };
