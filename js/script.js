@@ -1,5 +1,5 @@
 'use strict';
-let isNumber = function(mon){
+const isNumber = function(mon){
   return !isNaN(parseFloat(mon)) && isFinite(mon)
 }
 let mission = 800000;
@@ -10,8 +10,7 @@ do{
  money = prompt('месячный доход?', 100000);
 }
 while (!isNumber(money));
-// let emount = [];
-let getExpensesMonth = function(){
+const getExpensesMonth = function(){
   let emount = 0;
   for (let i = 0; i < 2; i++) {
          expenses[i] = prompt('Введите обязательную статью расходов', 'еда');
@@ -22,19 +21,18 @@ let getExpensesMonth = function(){
      }
    console.log('список расходов:',expenses);
   console.log('расход за месяц: ', emount);
+  return emount;
 };
-
+// typeof
 getExpensesMonth();
-// console.log('money:', emount);
-// let expensesAmount = getExpensesMonth();
-// console.log('расход за месяц: ' + emount);
-// // console.log(expensesAmount);
-
-// function expens(money, emount){
-//   return (money - emount);
-// };
-// const getAccumulatedMonth = expens(money, emount);
-// console.log('123', getAccumulatedMonth);
+console.log('money:', money);
+const expensesAmount = getExpensesMonth;
+console.log('расход за месяц: ', (getExpensesMonth));
+function Amount(money, expensesAmount){
+  return (money - expensesAmount);
+};
+const expensesAmount2 = Amount(money, expensesAmount);
+console.log('остаток за месяц: ', expensesAmount2);
 
 // let accumulatedMonth  = getAccumulatedMonth;
 // // console.log(accumulatedMonth);
