@@ -18,7 +18,7 @@ let appData = {
   expensesMonth: 0,
   getExpensesMonth: [], //обязательных расходов за месяц
   //  statusIncome: 0,
-   // targetMount2: 0,
+  //  targetMount: 0,
    // getBudget: {}, //Доходы минус расходы
   getTargetMonth: {}, //какой период будет достигнута цель
    // getStatusIncome: {}, //чтота пошло нетак уровень дохода
@@ -33,44 +33,51 @@ let appData = {
       }
     }
    },
-   getBudget: function (money, expensesMonth) {
-    return money - appData.expensesMonth;
+   getBudget: function () {  // остаток
+    return money - appData.expensesMonth;  // зарп - рас
    },
-  targetMounth: function (mission, getBudget) {
-    return appData.mission / appData.getBudget;
+  targetMounth: function () {  // месяцы
+    return appData.mission / appData.getBudget(); // миссия \ остаток
   },
-  //  budgetDay: function (){
-    //  for (let  )
-    // return appData.day / appData.expensesMonth
-  // },
+   budgetDay: function (){ // днев буд
+     return appData.expensesMonth / appData.day; // 30 д \ рас
+  },
    statusIncome: function () {
-    if (appData.targetMonth > 0) {
-    return (Math.ceil(appData.targetMonth));
-    } else if (appData.targetMonth <= 0) {
+     if (appData.targetMounth() > 0) {  // месяц
+       return (Math.ceil(appData.targetMounth()));
+     } else if (appData.targetMounth() <= 0) {
     return ('цель не будет достигнута');
     }
 },
 getStatusIncome: function () {
-  if (budgetDay > 1200) {
+  if (appData.budgetDay() > 1200) {
     return ('У вас высокий уровень дохода');
-  } else if (budgetDay > 600 && budgetDay < 1200) {
+  } else if (appData.budgetDay() > 600 && appData.budgetDay() < 1200) {
     return ('У вас средний уровень дохода');
-  } else if (budgetDay > 0 && budgetDay < 600) {
+  } else if (appData.budgetDay() > 0 && appData.budgetDay() < 600) {
     return ('К сожалению у вас уровень дохода ниже среднего');
-  } else if (budgetDay < 0) {
-    return ('Что-то пошло не так!');
+  } else if (appData.budgetDay() < 0) {
+    return ('Что-то пошло не так! ');
   }
  }
 };
 appData.asking();
 appData.getBudget();
-appData.targetMounth ();
-appData. statusIncome();
+appData.targetMounth();
+appData.budgetDay();
+appData.statusIncome();
+appData.getStatusIncome();
 // targetMounth = month(appData.mission, appData.getBudget)
 
 for (let key in appData){
   console.log(' ключ: ' + key + ' значение: ' + appData[key]);
 }
 console.log('обязательный расход за месяц:', appData.expensesMonth);
-console.log(appData in appData.targetMounth);
-// console.log('месяцев до цели', purpose());
+// console.log('getBudget ', appData.getBudget());
+console.log( appData.statusIncome());
+console.log(appData.getStatusIncome());
+// console.log('месяцев до цели: ', Math.ceil (appData.targetMounth()));
+// console.log('budgetDay: ', Math.floor(appData.budgetDay()));
+
+
+// console.log('mission ', appData.mission);
