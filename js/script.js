@@ -7,24 +7,16 @@ do {
   money = prompt('месячный доход?', 100000);
 }
 while (!isNumber(money));
-
 let appData = {
   mission: 800000,
   period: 0,
   day: 30,
   budget: {},
-  // budgetDay: 0,
-  // budgetMonth: 0,
   expensesMonth: 0,
-  getExpensesMonth: [], //обязательных расходов за месяц
-  //  statusIncome: 0,
-  //  targetMount: 0,
-   // getBudget: {}, //Доходы минус расходы
-  getTargetMonth: {}, //какой период будет достигнута цель
-   // getStatusIncome: {}, //чтота пошло нетак уровень дохода
+  getExpensesMonth: [], 
+  getTargetMonth: {},
   asking: function () {
-    // let expenses;
-    for (let i = 0; i < 2; i++) {
+     for (let i = 0; i < 2; i++) {
       appData.getExpensesMonth[i] = prompt(
         "Введите обязательную статью расходов", "еда");
       appData.expensesMonth += +prompt("во сколько это обходится", 2000);
@@ -33,17 +25,17 @@ let appData = {
       }
     }
    },
-   getBudget: function () {  // остаток
-    return money - appData.expensesMonth;  // зарп - рас
+   getBudget: function () {  
+    return money - appData.expensesMonth;  
    },
-  targetMounth: function () {  // месяцы
-    return appData.mission / appData.getBudget(); // миссия \ остаток
+  targetMounth: function () {  
+    return appData.mission / appData.getBudget(); 
   },
-   budgetDay: function (){ // днев буд
-     return appData.expensesMonth / appData.day; // 30 д \ рас
+   budgetDay: function (){ 
+     return appData.expensesMonth / appData.day; 
   },
    statusIncome: function () {
-     if (appData.targetMounth() > 0) {  // месяц
+     if (appData.targetMounth() > 0) {  
        return (Math.ceil(appData.targetMounth()));
      } else if (appData.targetMounth() <= 0) {
     return ('цель не будет достигнута');
@@ -67,17 +59,10 @@ appData.targetMounth();
 appData.budgetDay();
 appData.statusIncome();
 appData.getStatusIncome();
-// targetMounth = month(appData.mission, appData.getBudget)
-
 for (let key in appData){
   console.log(' ключ: ' + key + ' значение: ' + appData[key]);
 }
 console.log('обязательный расход за месяц:', appData.expensesMonth);
-// console.log('getBudget ', appData.getBudget());
 console.log( appData.statusIncome());
 console.log(appData.getStatusIncome());
-// console.log('месяцев до цели: ', Math.ceil (appData.targetMounth()));
-// console.log('budgetDay: ', Math.floor(appData.budgetDay()));
 
-
-// console.log('mission ', appData.mission);
