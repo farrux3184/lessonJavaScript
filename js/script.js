@@ -72,12 +72,12 @@ let appData = {
     const expenses = function () {
       let validExpenses;
     do {
-    validExpenses = prompt("во сколько это обходится", 2000);
+    validExpenses = +prompt("во сколько это обходится", 2000);
     }
     while (!isNumber(validExpenses));
     return validExpenses;
     };
-    appData.expensesMonth2 = expenses();
+    appData.expensesMonth2 += expenses();
     appData.expensesMonth[appData.expensesMonth3] = appData.expensesMonth2;
     
     }
@@ -159,6 +159,5 @@ str.forEach((el, i) => {
   str[i] = res;
 });
 console.log('возможные расходы за месяц', str.join(', ').split(', '));
-console.log('2', appData.expensesMonth2);
-console.log(appData.moneyDeposit, 'руб');
-console.log(appData.persentDeposit, '%');
+console.log('сумма депозита:', appData.moneyDeposit, 'руб');
+console.log('процент депозита:', appData.persentDeposit, '%');
