@@ -10,9 +10,8 @@ let isString = function (n) {
   return false;
 };
 let money;
-const additionalIncomeItem0 = document.querySelectorAll('.additional_expenses-item')[0];
-const additionalIncomeItem1 = document.querySelectorAll('.additional_expenses-item')[1];
-// console.log('document.querySelectorAll:', document.querySelectorAll('.additional_income-item'));
+const additionalIncomeItem0 = document.querySelectorAll('.additional_income-item')[0];
+const additionalIncomeItem1 = document.querySelectorAll('.additional_income-item')[1];
 const checkBox = document.querySelector('#deposit-check')
 const budgetMonthValue = document.querySelector('.budget_month-value');
 const budgetDayValue = document.querySelector('.budget_day-value');
@@ -21,6 +20,13 @@ const additionalIncomeValue = document.querySelector('.additional_income-value')
 const additionalEexpensesValue = document.querySelector('.additional_expenses-value');
 const incomePeriodValue = document.querySelector('.income_period-value');
 const targetMonthValue = document.querySelector('.target_month-value');
+const salaryAmount = document.querySelector('.salary-amount');
+const incomeTitle = document.querySelector('.income-title');
+const incomeAmount = document.querySelector('.income-amount');
+const expensesTitle = document.querySelector('.expenses-title');
+const expensesAmount = document.querySelector('.expenses-amount');
+const additionalExpensesItem = document.querySelector('.additional_expenses-item');
+const periodSelect = document.querySelector('.period-select');
 do {
   money = prompt('месячный доход?', 100000);
 }
@@ -182,7 +188,6 @@ console.log('обязательный расход за месяц:', appData.ex
 console.log(appData.statusIncome());
 console.log(appData.getStatusIncome());
 console.log(appData.calcSavedMoney());
-
 let str = appData.addExpenses;
 str.forEach((el, i) => {
   let res;
@@ -193,12 +198,10 @@ str.forEach((el, i) => {
 console.log('возможные расходы за месяц', str.join(', ').split(', '));
 console.log('сумма депозита:', appData.moneyDeposit, 'руб');
 console.log('процент депозита:', appData.persentDeposit, '%');
-
 console.log('кнопка расчёта:', appData.buttonCalculate());
 console.log('кнопка +0', appData.buttonPlus0());
 console.log('кнопка +1', appData.buttonPlus1());
 console.log('checkBox', checkBox);
-
 console.log('возможный доход0', additionalIncomeItem0);
 console.log('возможный доход1', additionalIncomeItem1);
 console.log('budgetMonthValue', budgetMonthValue);
@@ -208,26 +211,11 @@ console.log('additionalIncomeValue: ', additionalIncomeValue);
 console.log('additionalEexpensesValue: ', additionalEexpensesValue);
 console.log('incomePeriodValue: ', incomePeriodValue);
 console.log('targetMonthValue: ', targetMonthValue);
-
-const salaryAmount = document.querySelector('.salary-amount');
-const incomeTitle = document.querySelector('.income-title');
-const incomeAmount = document.querySelector('.income-amount');
-// const additionalIncomeItem = document.querySelectorAll(.'additional_income-item');
-// const additionalIncomeItem = document.querySelector(.'additional_income-item');
-const expensesTitle = document.querySelector('.expenses-title')
-const expensesAmount = document.querySelector('.expenses-amount')
-const additionalExpensesItem = document.querySelector('.additional_expenses-item')
-// const salaryAmount = document.querySelector
-
-
-
 console.log('Месячный доход:', salaryAmount);
 console.log('Дополнительный доход:', incomeTitle);
 console.log('Сумма Дохода', incomeAmount);
-// console.log('Возможный доход', additionalIncomeItem);
-// console.log('Возможный доход', additionalIncomeItem);
 console.log('Обязательные расходы', expensesTitle);
 console.log('Сумма расхода', expensesAmount);
 console.log('Возможные расходы', additionalExpensesItem);
-// console.log('', );
+console.log('Период расчета:', periodSelect);
 
