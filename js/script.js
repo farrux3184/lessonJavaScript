@@ -17,14 +17,9 @@ const advertising = document.querySelector('.adv'),
       book05 = document.querySelectorAll('ul')[2],
       book05List = book05.querySelectorAll('li'),
       newLi = document.createElement('li'),
-      
-      // bodyBg = document.querySelector('body');
-     bodyBg = document.body.style.background = "url('../image/you-dont-know-js.jpg')";
-      // bodyBg.setAttribute('style', 'background:red');
+      bodyBg = document.body.style.background = "url('../image/you-dont-know-js.jpg')";
       newLi.textContent = 'Глава 8: За пределами ES6';
       book3Text.textContent = 'Книга 3. this и Прототипы Объектов';
-
-          
 book02List[1].after(book02List[3]);
 book02List[3].after(book02List[6]);
 book02List[6].after(book02List[8]);
@@ -39,4 +34,3 @@ book4.after(book3);
 books.append(book2);
 backgr.append();
 advertising.remove();
-// console.log(bodyBg);
