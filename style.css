@@ -27,14 +27,14 @@ a:active {
   text-decoration: none;
 }
 
-/* body {
+body {
   position: relative;
   background-image: url(./image/open_book.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-} */
+}
 
 
 h1, h2 {

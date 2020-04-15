@@ -16,7 +16,7 @@ const advertising = document.querySelector('.adv'),
       book04List = book04.querySelectorAll('li'),
       book05 = document.querySelectorAll('ul')[2],
       book05List = book05.querySelectorAll('li'),
-      newLi = document.createElement('li');
+      newLi = document.createElement('li'),
       
       // bodyBg = document.querySelector('body');
      bodyBg = document.body.style.background = "url('../image/you-dont-know-js.jpg')";
