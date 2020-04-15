@@ -19,7 +19,7 @@ const advertising = document.querySelector('.adv'),
       newLi = document.createElement('li');
       
       // bodyBg = document.querySelector('body');
-     bodyBg = document.body.style.background = '';
+     bodyBg = document.body.style.background = "url('../image/you-dont-know-js.jpg')";
       // bodyBg.setAttribute('style', 'background:red');
       newLi.textContent = 'Глава 8: За пределами ES6';
       book3Text.textContent = 'Книга 3. this и Прототипы Объектов';
