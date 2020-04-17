@@ -22,7 +22,7 @@ let isString = function (n) {
     expensesMonthValue = document.querySelector(".expenses_month-value"), // расход за месяц
     additionalIncomeValue = document.querySelector(".additional_income-value"), // воз дох выв
     additionalEexpensesValue = document.querySelector(".additional_expenses-value"), // воз рас выв
-    incomePeriodValue = document.querySelector(".income_period-value"),
+    incomePeriodValue = document.querySelector(".income_period-value"), // накоп за период
     targetMonthValue = document.querySelector(".target_month-value"), // цел дос мес выв
     salaryAmount = document.querySelector(".salary-amount"), // месячный доход
     incomeTitle = document.querySelector(".income-title"),
@@ -70,7 +70,8 @@ let isString = function (n) {
       additionalEexpensesValue.value = appData.addExpenses.join(", ");
       additionalIncomeValue.value = appData.addIncome.join(", "); /////
       targetMonthValue.value = Math.ceil(appData.getTargetMounth());
-      incomePeriodValue.value = appData.calcPeriod();
+      // incomePeriodValue.value = appData.calcPeriod();
+     
     },
     // обязательные расходы клон поля
     addExpensesBlock: function () {
@@ -179,24 +180,24 @@ let isString = function (n) {
         appData.moneyDeposit = moneyDeposit();
       }
     },
-    
     calcPeriod: function () {
       return appData.budgetMonth * periodSelect.value;
     },
-    // periodAmount цифра под ползунком
-
-    calcValue: function (calcValue) {
-      periodAmount.value = periodSelect.value;
+    // periodAmount цифра под ползунком  periodSelect.value ползунок
+    calcValue: function () {
+    periodSelect.addEventListener('input', function () {
+    incomePeriodValue.value = appData.calcPeriod();
+    // console.log('ползунок', appData.calcValue());
+     appData.calcValue();
+    });
     
+    periodAmount.textContent = periodSelect.value;
     },
+   
   };
+  appData.calcValue();
   start.addEventListener('click', appData.start);
   expensesPlus.addEventListener('click', appData.addExpensesBlock);
   incomeItemPlus.addEventListener("click", appData.addIncomeBlock);
   appData.getInfoDeposit();
-
-periodSelect.addEventListener('input', function () {
-  incomePeriodValue.value = appData.calcPeriod();
-  console.log(incomePeriodValue.value);
-});
- 
+  
