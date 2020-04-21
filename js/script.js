@@ -33,20 +33,7 @@ let buttonPlus1 = document.querySelectorAll(".btn_plus")[1], //plus расход
     periodAmount = document.querySelector(".period-amount"), // вывод ползунка
     targetAmount = document.querySelector(".target-amount"), // цель сумм
     incomeItems = document.querySelectorAll(".income-items"), // доп доход ввод
-    inputAll = document.querySelectorAll('[type="text"]');  // все поля input 
-
-  start.addEventListener('click', function (e) {
-    inputAll.forEach(function (item) {
-      const resBl = reset.style.display = 'block';
-      const strNo = start.style.display = 'none';
-      item.disabled = true;
-    })
-  });
-
-reset.addEventListener('click', function (e) {
-      inputAll.forEach(function (item) {
-      item.value = '';
-
+    inputAll = document.querySelectorAll('[type="text"]'); // все поля input 
 let appData = { 
     budgetDay: 0,
     budgetMonth: 0, // месячный доход
@@ -62,8 +49,7 @@ let appData = {
     period: 0, // период достижения
     budget: 0, // доход
     start: function () {
-       
-      //  console.log(this);
+     
       appData.budget = +salaryAmount.value;
       appData.getExpenses();
       appData.getIncome();
@@ -73,7 +59,21 @@ let appData = {
     
       this.showResult();
     },
-    // reset: function (){},
+    reset: function (){
+          appData.budgetDay = 0;
+          appData.budgetMonth = 0; // месячный доход
+          appData.deposit = false;
+          appData.moneyDeposit = 0;
+          appData.income = {}; // доп доход
+          appData.incomeMonth = 0; // доп дох в мес
+          appData.addIncome = []; // воз дох
+          appData.expenses = {}; // обязательный расход
+          appData.addExpenses = []; // возможные расходы
+          appData.expensesMonth = 0; // расход за месяц
+          appData.period = 0; // период достижения
+          appData.budget = 0; // доход
+          periodSelect.value =  0;
+    },
     // вывод результата
     showResult: function () {
       budgetMonthValue.value = this.budgetMonth;
@@ -82,7 +82,6 @@ let appData = {
       additionalEexpensesValue.value = this.addExpenses.join(", ");
       additionalIncomeValue.value = this.addIncome.join(", "); /////
       targetMonthValue.value = Math.ceil(this.getTargetMounth());
-     
     },
     // обязательные расходы клон поля
     addExpensesBlock: function () {
@@ -195,19 +194,30 @@ let appData = {
   };
  
   start.addEventListener('click', appData.start.bind(appData));
-  // reset.addEventListener('click', appData.reset.bind(appData));
+  reset.addEventListener('click', appData.reset.bind(appData));
   expensesPlus.addEventListener('click', appData.addExpensesBlock);
   incomeItemPlus.addEventListener("click", appData.addIncomeBlock);
   appData.getInfoDeposit();
   appData.calcPeriod();
 
-});
-     inputAll.forEach(function (item) {
-     const resNo = reset.style.display = 'none';
-     const strBl = start.style.display = 'block';
-     item.disabled = false;
-     })
-     });
+  start.addEventListener('click', function (e) {
+    inputAll.forEach(function (item) {
+      const resBl = reset.style.display = 'block';
+      const strNo = start.style.display = 'none';
+      item.disabled = true;
+    })
+  });
+
+reset.addEventListener('click', function (e) {
+    inputAll.forEach(function (item) {
+    const resNo = reset.style.display = 'none';
+    const strBl = start.style.display = 'block';
+    item.value = '';
+    });
+    inputAll.forEach(function (item) {
+    item.disabled = false;
+   });
+    });
 
   start.disabled = true;
    salaryAmount.addEventListener('input', function () {
@@ -217,21 +227,3 @@ let appData = {
       }
     });
     salaryAmount.addEventListener('input', salaryAmount);
-
-    //  start.addEventListener('click', function (e) {
-    //     inputAll.forEach(function (item) {
-    //     const resBl = reset.style.display = 'block';
-    //     const strNo = start.style.display = 'none';
-    //     item.disabled = true;
-    //   })
-    // });
-    //  reset.addEventListener('click', function (e) {
-    //    inputAll.forEach(function (item) {
-    //     item.value = '';
-      //  });
-    //   inputAll.forEach(function (item) {
-    //       const resNo = reset.style.display = 'none';
-    //       const strBl = start.style.display = 'block';
-    //       item.disabled = false; 
-    //   })
-    // });
