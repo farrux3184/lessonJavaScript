@@ -9,6 +9,7 @@ let isString = function (n) {
   }
   return false;
 };
+ 
 let start = document.getElementById("start"); //start
 let buttonPlus1 = document.querySelectorAll(".btn_plus")[1], //plus расхода
     reset = document.getElementById('cancel'),
@@ -27,13 +28,15 @@ let buttonPlus1 = document.querySelectorAll(".btn_plus")[1], //plus расход
     salaryAmount = document.querySelector(".salary-amount"), // месячный доход
     incomeTitle = document.querySelector(".income-title"),
     expensesTitle = document.querySelector(".expenses-title"),
-    expensesItems = document.querySelectorAll(".expenses-items"), // обязательные расходы
+    expensesItems = document.querySelectorAll(".expenses-items"), // обязательные расходы ввод 
     additionalExpensesItem = document.querySelector(".additional_expenses-item"), // воз расх
     periodSelect = document.querySelector(".period-select"), // ползунок
     periodAmount = document.querySelector(".period-amount"), // вывод ползунка
     targetAmount = document.querySelector(".target-amount"), // цель сумм
     incomeItems = document.querySelectorAll(".income-items"), // доп доход ввод
     inputAll = document.querySelectorAll('[type="text"]'); // все поля input 
+    start.disabled = true;
+  
 let appData = { 
     budgetDay: 0,
     budgetMonth: 0, // месячный доход
@@ -48,6 +51,7 @@ let appData = {
     expensesMonth: 0, // расход за месяц
     period: 0, // период достижения
     budget: 0, // доход
+    
     start: function () {
      
       appData.budget = +salaryAmount.value;
@@ -61,18 +65,22 @@ let appData = {
     },
     reset: function (){
           appData.budgetDay = 0;
-          appData.budgetMonth = 0; // месячный доход
+          appData.budgetMonth = 0; 
           appData.deposit = false;
           appData.moneyDeposit = 0;
-          appData.income = {}; // доп доход
-          appData.incomeMonth = 0; // доп дох в мес
-          appData.addIncome = []; // воз дох
-          appData.expenses = {}; // обязательный расход
-          appData.addExpenses = []; // возможные расходы
-          appData.expensesMonth = 0; // расход за месяц
-          appData.period = 0; // период достижения
-          appData.budget = 0; // доход
+          appData.income = {}; 
+          appData.incomeMonth = 0; 
+          appData.addIncome = [];
+          appData.expenses = {}; 
+          appData.addExpenses = []; 
+          appData.expensesMonth = 0;
+          appData.period = 0; 
+          appData.budget = 0; 
           periodSelect.value =  0;
+          incomePeriodValue.value = 0;
+          start.disabled = true;
+          periodAmount.textContent = 1;
+          
     },
     // вывод результата
     showResult: function () {
@@ -88,8 +96,8 @@ let appData = {
       let cloneExpensesItem = expensesItems[0].cloneNode(true);
       expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
       expensesItems = document.querySelectorAll(".expenses-items");
-      if (expensesItems.length === 3) {
-        expensesPlus.style.display = "none";
+       if (expensesItems.length === 3) {
+         expensesPlus.style.display = "none";
       }
     },
     // обязательные расход и сумма
@@ -192,7 +200,7 @@ let appData = {
       });
      },
   };
- 
+
   start.addEventListener('click', appData.start.bind(appData));
   reset.addEventListener('click', appData.reset.bind(appData));
   expensesPlus.addEventListener('click', appData.addExpensesBlock);
@@ -205,25 +213,22 @@ let appData = {
       const resBl = reset.style.display = 'block';
       const strNo = start.style.display = 'none';
       item.disabled = true;
-    })
+    });
   });
 
-reset.addEventListener('click', function (e) {
+  reset.addEventListener('click', function (e) {
     inputAll.forEach(function (item) {
     const resNo = reset.style.display = 'none';
     const strBl = start.style.display = 'block';
     item.value = '';
+    appData.addExpensesBlock = 0;
     });
-    inputAll.forEach(function (item) {
-    item.disabled = false;
-   });
-    });
-
-  start.disabled = true;
-   salaryAmount.addEventListener('input', function () {
+    appData.addExpensesBlock
+ });
+salaryAmount.addEventListener('input', function () {
       console.log(salaryAmount.value);
       if (salaryAmount.value !== '') {
        start.disabled = false;
       }
     });
-    salaryAmount.addEventListener('input', salaryAmount);
+salaryAmount.addEventListener('input', salaryAmount);
