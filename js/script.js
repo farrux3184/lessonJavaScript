@@ -50,9 +50,9 @@ let appData = {
     expensesMonth: 0, // расход за месяц
     period: 0, // период достижения
     budget: 0, // доход
-    
     start: function () {
-            
+      start.style.display = 'none';
+      reset.style.display = 'block';
       appData.budget = +salaryAmount.value;
       appData.getExpenses();
       appData.getIncome();
@@ -63,32 +63,49 @@ let appData = {
       this.showResult();
     },
     reset: function (){
-      let allInput = document.querySelectorAll('.data input[type = text]');
-      let null1 = 0; 
-        salaryAmount.value = ''; 
-        incomeAmount.value = '';
-        cashExpenses.value = '';
-        targetAmount.value = '';
-        budgetDayValue.value = '';
-        budgetMonthValue.value = ''; 
-        expensesMonthValue.value ='';
-        periodSelect.value = 0;
-        periodAmount.textContent = 1;
-        incomePeriodValue.value = '';
-        targetMonthValue.value = '';
-        start.disabled = true;
-        additionalIncomeItem[0].value = '';
-        additionalIncomeItem[1].value = '';
-        additionalIncomeValue.value = '';
-        additionalEexpensesValue.value = '';
-        additionalExpensesItem.value = '';
-        allInput[1].value = '';
-        allInput[5].value = '';
-        allInput[7].value = '';
-        allInput[9].value = '';
-        appData.addExpenses = [];
-        appData.addIncome = [];
-        appData.expenses = [];
+      let inputText = document.querySelectorAll('[type="text"]:not(.result-total)');
+      let inputAll = document.querySelectorAll('input:not(.period-select)');
+      start.disabled = false;
+
+      inputAll.forEach(element => {
+        element.value = '';
+      });
+
+      inputText.forEach(element => {
+        element.disabled = false;
+      });
+
+      appData.income = {};
+      appData.incomeMonth = 0;
+      appData.addIncome = [];
+      appData.expenses = {};
+      appData.addExpenses = [];
+      appData.deposit = false;
+      appData.percentDeposit = 0;
+      appData.moneyDeposit = 0;
+      appData.budget = 0;
+      appData.budgetDay = 0;
+      appData.budgetMonth = 0;
+      appData.expensesMonth = 0;
+
+      start.style.display = 'block';
+      reset.style.display = 'none';
+      periodSelect.value = 1;
+      periodAmount.textContent = periodSelect.value;
+
+      incomeItems.forEach((item, i) => {
+        if (i !== 0) {
+          item.remove();
+        }
+      });
+      buttonPlus1.style.display = 'block';
+
+      expensesItems.forEach((item, i) => {
+        if (i !== 0) {
+          item.remove();
+        }
+      });
+      buttonPlus0.style.display = 'block';
     },
     // вывод результата
     showResult: function () {
@@ -215,36 +232,6 @@ let appData = {
   incomeItemPlus.addEventListener("click", appData.addIncomeBlock);
   appData.getInfoDeposit();
   appData.calcPeriod();
-
-  start.addEventListener('click', function (e) {
-    let allInput = document.querySelectorAll('.data input[type = text]');
-    allInput.forEach((item) => {
-      item.setAttribute('disabled', 'true');
-    });
-      const resBl = reset.style.display = 'block';
-      const strNo = start.style.display = 'none';
-   });
-
-  reset.addEventListener('click', function (e) {
-    let allInput = document.querySelectorAll('.data input[type = text]');
-    allInput.forEach((item) => {
-    item.disabled = false;
-  });
-   incomeItems.forEach((item, i) => {
-     if (i !== 0) {
-       item.remove();
-     }
-  });
-  expensesItems.forEach((item, i) => {
-    if (i !== 0){
-      item.remove();
-    }
-  });
-  expensesPlus.style.display = 'block';
-  incomeItemPlus.style.display = 'block';
-    const resNo = reset.style.display = 'none';
-    const strBl = start.style.display = 'block';
- });
 
   salaryAmount.addEventListener('input', function () {
     if (salaryAmount.value !== '') {
