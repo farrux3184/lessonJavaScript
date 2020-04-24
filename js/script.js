@@ -51,6 +51,10 @@ let appData = {
     period: 0, // период достижения
     budget: 0, // доход
     start: function () {
+      const allInput = document.querySelectorAll('.data input[type = text]');
+      allInput.forEach((item) => {
+        item.setAttribute('disabled', 'true');
+      });
       start.style.display = 'none';
       reset.style.display = 'block';
       appData.budget = +salaryAmount.value;
