@@ -84,7 +84,6 @@ let appData = {
         allInput[5].value = '';
         allInput[7].value = '';
         allInput[9].value = '';
-        allInput[15].value = '';
     },
     // вывод результата
     showResult: function () {
