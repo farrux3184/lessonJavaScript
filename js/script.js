@@ -64,6 +64,7 @@ let appData = {
     },
     reset: function (){
       let allInput = document.querySelectorAll('.data input[type = text]');
+      let null1 = 0; 
         salaryAmount.value = ''; 
         incomeAmount.value = '';
         cashExpenses.value = '';
@@ -80,10 +81,14 @@ let appData = {
         additionalIncomeItem[1].value = '';
         additionalIncomeValue.value = '';
         additionalEexpensesValue.value = '';
+        additionalExpensesItem.value = '';
         allInput[1].value = '';
         allInput[5].value = '';
         allInput[7].value = '';
         allInput[9].value = '';
+        appData.addExpenses = [];
+        appData.addIncome = [];
+        appData.expenses = [];
     },
     // вывод результата
     showResult: function () {
@@ -91,7 +96,7 @@ let appData = {
       budgetDayValue.value = Math.floor(this.budgetDay);
       expensesMonthValue.value = this.expensesMonth;
       additionalEexpensesValue.value = this.addExpenses.join(", ");
-      additionalIncomeValue.value = this.addIncome.join(", "); /////
+      additionalIncomeValue.value = this.addIncome.join(", "); 
       targetMonthValue.value = Math.ceil(this.getTargetMounth());
     },
     // обязательные расходы клон поля
