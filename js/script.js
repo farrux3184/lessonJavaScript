@@ -62,7 +62,7 @@ AppData.prototype.start = function () {
   });
   start.style.display = 'none';
   reset.style.display = 'block';
-  this.budget = +salaryAmount.value;
+  appData.budget = +salaryAmount.value;
   this.getExpenses();
   this.getIncome();
   this.getAddExpenses();
@@ -169,7 +169,7 @@ AppData.prototype.reset = function () {
       }
     });
     for (let key in _this.income) {
-      this.incomeMonth += +this.income[key];
+      _this.incomeMonth += +_this.income[key];
     }
   };
   // возможные расходы
@@ -232,9 +232,10 @@ AppData.prototype.reset = function () {
   AppData.prototype.calcPeriod = function () {
     const _this = this;
     periodSelect.addEventListener('input', function (e) {
+      
       console.log(e.target.value);
       periodAmount.textContent = e.target.value;
-      if (salaryAmount.value !== "") {
+      if (salaryAmount.value !== '') {
         _this.period = _this.budgetMonth * e.target.value;
       }
       incomePeriodValue.value = _this.period;
@@ -257,6 +258,7 @@ salaryAmount.addEventListener('input', salaryAmount);
 
   };
 const appData = new AppData();
-AppData.prototype.eventListener();
+appData.eventListener();
+
 
   
