@@ -58,17 +58,3 @@ let dateNewYear = new Date(deadline),
    
 }
   dataYear('31 December 2020');
-// let myDate = new Date();
-// // можно задать год
-// myDate.setFullYear(2021);
-// console.log(myDate);
-// console.log(myDate.toLocaleTimeString());
-// console.log(myDate.toLocaleDateString());
-// console.log('год ' + myDate.getFullYear());
-// console.log('месяц ' + (myDate.getMonth() + 1));
-// console.log('день месяца ' + myDate.getDate());
-// console.log('день недели ' + myDate.getDay());
-// console.log('час ' + myDate.getHours());
-// console.log('минуты ' + myDate.getMinutes());
-// console.log('секунды ' + myDate.getSeconds());
-// console.log('миллисекунды ' + myDate.getMilliseconds());

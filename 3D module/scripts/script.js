@@ -9,8 +9,8 @@ function countTimer(deadline){
 
 
 function getTimeRemaining(){
-  let dateStop = new Date(deadline).getTime(),
-      dateNow = new Date().getTime(),
+  let dateStop = new Date(deadline),
+      dateNow = new Date(),
       timeRemaining = (dateStop - dateNow) / 1000,
       seconds = Math.floor(timeRemaining % 60),
       minutes = Math.floor((timeRemaining / 60) % 60),
