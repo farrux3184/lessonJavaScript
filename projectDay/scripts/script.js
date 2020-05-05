@@ -6,8 +6,8 @@ let today = document.querySelector('.day'),
     time = document.querySelector('.time'),
     remained = document.querySelector('.remained');
   
-  function timing(){
-let dateNewYear = new Date(deadline),
+    function timing(){
+    let dateNewYear = new Date(deadline),
     dateNow = new Date(),
     hoursNow = dateNow.getHours(),
     dayNow = dateNow.getDay(),
@@ -15,14 +15,10 @@ let dateNewYear = new Date(deadline),
     secondsNow = dateNow.getSeconds(),
     timeRemaining = (dateNewYear - dateNow) / 1000,
     day = Math.floor(timeRemaining / 60 / 60 / 24);
-    return {
-      dateNow,
-      dayNow, hoursNow,
-      minutesNow,
-      secondsNow, day
-    };
+    return {dateNow, dayNow, hoursNow, minutesNow, secondsNow, day};
    
   }
+ 
   function exitScreen(){
   let times = timing();
   // приветствие
@@ -52,9 +48,10 @@ let dateNewYear = new Date(deadline),
   time.textContent = times.dateNow.toLocaleTimeString();
   remained.textContent = times.day;
   setTimeout(exitScreen, 1000);
-  
+      console.log('time: ', time);
+
    }
-   exitScreen();
+  //  exitScreen();
    
 }
   dataYear('31 December 2020');

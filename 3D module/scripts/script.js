@@ -2,24 +2,22 @@ window.addEventListener('DOMContentLoaded', function() {
   'use strict';
 
 // timer
-function countTimer(deadline){
+const countTimer = (deadline) => {
   let timeHours = document.querySelector('#timer-hours'),
       timeMinutes = document.querySelector('#timer-minutes'),
       timeSeconds = document.querySelector('#timer-seconds');
 
-
-function getTimeRemaining(){
+const getTimeRemaining = () => {
   let dateStop = new Date(deadline),
       dateNow = new Date(),
       timeRemaining = (dateStop - dateNow) / 1000,
       seconds = Math.floor(timeRemaining % 60),
       minutes = Math.floor((timeRemaining / 60) % 60),
-      hours = Math.floor(timeRemaining / 60 / 60) % 24,
-      day = Math.floor(timeRemaining / 60 / 60 / 24);
+      hours = Math.floor(timeRemaining / 60 / 60);
       return {timeRemaining, hours, minutes, seconds};
       }
 
-      function updateClock(){
+      const updateClock = () => {
         let timer = getTimeRemaining();
         if (timer.timeRemaining > 0) {
           if (timer.hours > 9){
@@ -48,7 +46,33 @@ function getTimeRemaining(){
         }
 
       }
-      updateClock()
+      // updateClock()
 }
-countTimer('06 may 2020');
+countTimer('15 may 2020');
+// menu
+const toogleMenu = () => {
+const menuBtn = document.querySelector('.menu'),
+    menu = document.querySelector('menu'),
+    closeBtn = document.querySelector('.close-btn'),
+    menuItem = menu.querySelectorAll('ul>li');
+
+    menuBtn.addEventListener('click', () => {
+       if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
+          menu.style.transform = `translate(0)`;
+       }else{
+         menu.style.transform = `translate(-100%)`;
+       }
+    });
+    closeBtn.addEventListener('click', () => {
+      menu.style.transform = `translate(-100%)`;
+    });
+    menuItem.forEach.addEventListener('click', () => {
+      menu.style.transform = `translate(-100%)`;
+    });
+
+};
+toogleMenu();
+
+
 });
+
