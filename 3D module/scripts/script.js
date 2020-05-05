@@ -1,54 +1,45 @@
-window.addEventListener('DOMContentLoaded', function() {
+
+window.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
 // timer
-function countTimer(deadline){
-  let timeHours = document.querySelector('#timer-hours'),
-      timeMinutes = document.querySelector('#timer-minutes'),
-      timeSeconds = document.querySelector('#timer-seconds');
+const countTimer = (deadline) => {
+  let timerHours = document.querySelector('#timer-hours');
+  let  timerMinutes = document.querySelector('#timer-minutes');
+  let timerSeconds = document.querySelector('#timer-seconds');
 
 
-function getTimeRemaining(){
-  let dateStop = new Date(deadline),
-      dateNow = new Date(),
+const getTimeRemaining = () => {
+  let dateStop = new Date(deadline).getTime(),
+      dateNow = new Date().getTime(),
       timeRemaining = (dateStop - dateNow) / 1000,
       seconds = Math.floor(timeRemaining % 60),
       minutes = Math.floor((timeRemaining / 60) % 60),
-      hours = Math.floor(timeRemaining / 60 / 60) % 24,
-      day = Math.floor(timeRemaining / 60 / 60 / 24);
+      hours = Math.floor(timeRemaining / 60 / 60);
       return {timeRemaining, hours, minutes, seconds};
-      }
-
-      function updateClock(){
-        let timer = getTimeRemaining();
-        if (timer.timeRemaining > 0) {
-          if (timer.hours > 9){
-          timeHours.textContent = timer.hours;
-          } else {
-            timeHours.textContent = '0' + timer.hours;
-          }
-          if (timer.minutes > 9){
-          timeMinutes.textContent = timer.minutes;
-          } else {
-            timeMinutes.textContent = '0' + timer.minutes;
-          }
-          if (timer.seconds > 9){
-          timeSeconds.textContent = timer.seconds;
-          } else {
-            timeSeconds.textContent = '0' + timer.seconds;
-          }
-        } else {
-          timeHours.textContent = '0' + 0;
-          timeMinutes.textContent = '0' + 0;
-          timeSeconds.textContent = '0' + 0;
-        }
-
-         if (timer.timeRemaining > 0) {
-          setInterval(updateClock, 1000);
-        }
-
-      }
-      updateClock()
 }
-countTimer('06 may 2020');
+
+const formatTime = (data) => {
+  if (data < 10) {
+    data = '0' + data;
+  }
+  return data;
+}
+
+let updateClock = setInterval (() => {
+  let timer = getTimeRemaining();
+  timerHours.textContent = formatTime(timer.hours);
+  timerMinutes.textContent = formatTime(timer.minutes);
+  timerSeconds.textContent = formatTime(timer.seconds);
+
+  if (timer.timeRemaining < 0) {
+    clearInterval(updateClock);
+    timerHours.textContent = '00';
+    timerMinutes.textContent = '00';
+    timerSeconds.textContent = '00';
+  }
+  }, 1000);
+  
+}
+countTimer('08 may 2020');
 });
