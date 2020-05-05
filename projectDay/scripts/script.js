@@ -1,13 +1,13 @@
   'use strict';
 
-  function dataYear(deadline){
-let today = document.querySelector('.day'),
+const dataYear = (deadline) => {
+  let today = document.querySelector('.day'),
     weekday = document.querySelector('.weekday'),
     time = document.querySelector('.time'),
     remained = document.querySelector('.remained');
   
-  function timing(){
-let dateNewYear = new Date(deadline),
+const timing = () => {
+  let dateNewYear = new Date(deadline),
     dateNow = new Date(),
     hoursNow = dateNow.getHours(),
     dayNow = dateNow.getDay(),
@@ -15,15 +15,10 @@ let dateNewYear = new Date(deadline),
     secondsNow = dateNow.getSeconds(),
     timeRemaining = (dateNewYear - dateNow) / 1000,
     day = Math.floor(timeRemaining / 60 / 60 / 24);
-    return {
-      dateNow,
-      dayNow, hoursNow,
-      minutesNow,
-      secondsNow, day
-    };
-   
-  }
-  function exitScreen(){
+    return { dateNow, dayNow, hoursNow, minutesNow, secondsNow, day};
+}
+
+let exitScreen = setInterval (() => {
   let times = timing();
   // приветствие
   if (times.hoursNow >= 6 && times.hoursNow <= 17){
@@ -51,10 +46,7 @@ let dateNewYear = new Date(deadline),
   }
   time.textContent = times.dateNow.toLocaleTimeString();
   remained.textContent = times.day;
-  setTimeout(exitScreen, 1000);
-  
-   }
-   exitScreen();
+  }, 1000)
    
 }
   dataYear('31 December 2020');
