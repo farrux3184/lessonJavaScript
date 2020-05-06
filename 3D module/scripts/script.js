@@ -86,22 +86,21 @@ const popup = document.querySelector('.popup'),
 
 popupBtn.forEach((elem) => {
   elem.addEventListener('click', () => {
-    popup.style.display = 'block'; // показать попап
-    if (widthWin > 768) { // если ширина экрана больше заданного числа, то запустить анимацию
-      let start = Date.now(); // получить стартовое время анимации (в момент клика)
+    popup.style.display = 'block'; 
+    if (widthWin > 768) { 
+      let start = Date.now(); 
       let timer = setInterval(() => {
-        let timePassed = Date.now() - start; // запуск таймера, отнять от текущего реального времени стартовое время, после клика
+        let timePassed = Date.now() - start; 
         if (timePassed >= 800) {
-          clearInterval(timer); // если время достигло определенного числа удалить setInterval 
-          return;
+          clearInterval(timer);
         }
-        draw(timePassed); // отрисовка анимации 
+        draw(timePassed); 
       });
       let draw = (timePassed) => {
-        let wContent = +getComputedStyle(popupCont).width.split('px')[0]; // получить стили попап контента (блок с самой формой, а не вся обёртка, с попап )
-        wContent = -wContent / 2 + 50 + 'px'; // данные для центрирования по горизонтали
-        popupCont.style.left = timePassed / 16 + '%'; // центрирование по горизонтали
-        popupCont.style.marginLeft = wContent; // центрирование по горизонтали
+        let wContent = +getComputedStyle(popupCont).width.split('px')[0]; 
+        wContent = -wContent / 2 + 50 + 'px'; 
+        popupCont.style.left = timePassed / 16 + '%'; 
+        popupCont.style.marginLeft = wContent; 
       };
     }
   });
