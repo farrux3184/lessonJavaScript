@@ -44,6 +44,8 @@ const menuBtn = document.querySelector('.menu'),
     menu = document.querySelector('menu'),
     closeBtn = document.querySelector('.close-btn'),
     menuItems = menu.querySelectorAll('ul>li');
+    
+    
  // первый вариант
 // const handlerMenu = () => {
 //  if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
@@ -52,10 +54,11 @@ const menuBtn = document.querySelector('.menu'),
 //    menu.style.transform = `translate(-100%)`;
 //  }
 // };
- // второй вариант
+
+// второй вариант
 const handlerMenu = () => {
- menu.classList.toggle('active-menu')
-};
+  menu.classList.toggle('active-menu')
+}
 
 menuBtn.addEventListener('click', handlerMenu )
 closeBtn.addEventListener('click', handlerMenu);
@@ -65,22 +68,51 @@ menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
 // for(let i = 0; i < menuItems.length; i++){
 //   menuItems[i].addEventListener('click', handlerMenu);
 // }
+
 };
 toogleMenu();
+
 // popUp
 const togglePopUp = () => {
-  const popup = document.querySelector('.popup'),
-    popupBtn = document.querySelectorAll('.popup-btn'),
-    popupClose = popup.querySelector('.popup-close');
+const popup = document.querySelector('.popup'),
+  popupCont = document.querySelector('.popup-content'),
+  popupBtn = document.querySelectorAll('.popup-btn'),
+  popupClose = popup.querySelector('.popup-close'),
+  width = document.documentElement.clientWidth;
+ 
+let count = 0,
+  animation;
+let animated = function () {
+  animation = requestAnimationFrame(animated);
+  count++;
+  if (count < 35) {
+    popupCont.style.left = count * 15 + 'px';
+  } else if(count === 35) {
+    cancelAnimationFrame(animation);
+  }
+  console.log(count);
+};
 
-    popupBtn.forEach((elem) => {
-      elem.addEventListener('click', () => {
-        popup.style.display = 'block';
-      });
-    });
-    popupClose.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
+popupBtn.forEach((elem) => {
+  elem.addEventListener('click', () => {
+  if (width >= 768) {
+    popupCont.style.position = 'releative';
+    popup.style.display = 'block';
+    popupCont.style.left = -350 + 'px';
+    animated();
+  }else{
+    popup.style.display = 'block';
+  }
+  });
+});
+
+popupClose.addEventListener('click', () => {
+  popup.style.display = 'none';
+  // popupCont.style.position = 'fixed';
+  animation = cancelAnimationFrame(animated);
+  count = 0;
+});
+console.log(width);
 };
 togglePopUp();
 });
