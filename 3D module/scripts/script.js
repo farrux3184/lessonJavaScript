@@ -162,8 +162,15 @@ tabs();
 const slider = () => {
   const slide = document.querySelectorAll('.portfolio-item'),
     btn = document.querySelectorAll('.portfolio-btn'),
-    dot = document.querySelectorAll('.dot'),
-    slider = document.querySelector('.portfolio-content');
+    slider = document.querySelector('.portfolio-content'),
+    newDots = document.querySelector('.portfolio-dots');
+
+  slide.forEach((elem) => {
+     let liFirst = document.createElement('li');
+      liFirst.classList.add('dot');
+      newDots.prepend(liFirst);
+    });
+  const dot = document.querySelectorAll('.dot');
 
     let currentSlide = 0,
       interval;
@@ -242,7 +249,7 @@ const slider = () => {
         startSlide();
       }
     });
-    startSlide(1500);
+    startSlide(2000);
 };
 slider();
 });
