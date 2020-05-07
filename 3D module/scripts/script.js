@@ -40,12 +40,8 @@ let updateClock = setInterval(() => {
 countTimer('15 may 2020');
 // menu
 const toogleMenu = () => {
-const menuBtn = document.querySelector('.menu'),
-    menu = document.querySelector('menu'),
-    closeBtn = document.querySelector('.close-btn'),
-    menuItems = menu.querySelectorAll('ul>li');
-    
-    
+const menu = document.querySelector('menu'),
+    header = document.querySelector('header');
  // первый вариант
 // const handlerMenu = () => {
 //  if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
@@ -54,21 +50,34 @@ const menuBtn = document.querySelector('.menu'),
 //    menu.style.transform = `translate(-100%)`;
 //  }
 // };
-
 // второй вариант
 const handlerMenu = () => {
-  menu.classList.toggle('active-menu')
+  menu.classList.toggle('active-menu');
 }
 
-menuBtn.addEventListener('click', handlerMenu )
-closeBtn.addEventListener('click', handlerMenu);
- // menu list v1 
-menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
- // menu list v2 
-// for(let i = 0; i < menuItems.length; i++){
-//   menuItems[i].addEventListener('click', handlerMenu);
-// }
+header.addEventListener('click', (event) => {
+  let target = event.target;
+  target = target.closest('.menu');
+  if (target){
+     handlerMenu();
+  } else {
+    if (!target){
+    menu.classList.remove('active-menu');
+    }
+    }
+});
+menu.addEventListener('click', (event) => {
+  let target = event.target;
 
+  if (target.classList.contains('close-btn')) {
+    handlerMenu();
+  } else {
+     target = target.closest('ul>li');
+     if (target){
+      handlerMenu();
+     }
+  }
+});
 };
 toogleMenu();
 
@@ -76,8 +85,7 @@ toogleMenu();
 const togglePopUp = () => {
 const popup = document.querySelector('.popup'),
   popupCont = document.querySelector('.popup-content'),
-  popupBtn = document.querySelectorAll('.popup-btn'),
-  popupClose = popup.querySelector('.popup-close');
+  popupBtn = document.querySelectorAll('.popup-btn');
 
   let widthWin = document.documentElement.clientWidth;
   window.onresize = () => {
@@ -105,13 +113,50 @@ popupBtn.forEach((elem) => {
     }
   });
 }); 
-popupClose.addEventListener('click', () => {
-  popup.style.display = 'none';
-  popupCont.style = 'none';
+
+popup.addEventListener('click', (event) => {
+  let target = event.target;
+
+  if (target.classList.contains('popup-close')){
+    popup.style.display = 'none';
+  } else {
+     target = target.closest('.popup-content');
+     if (!target) {
+       popup.style.display = 'none';
+     }
+  }
 });
 };
 togglePopUp();
+// tabs
+const tabs = () => {
+const tabHeader = document.querySelector('.service-header'),
+  tab = tabHeader.querySelectorAll('.service-header-tab'),
+  tabContent = document.querySelectorAll('.service-tab');
 
-
+  const toogleTabContent = (index) => {
+    for(let i = 0; i < tabContent.length; i++){
+      if(index === i){
+        tab[i].classList.add('active');
+        tabContent[i].classList.remove('d-none');
+      }else {
+        tab[i].classList.remove('active');
+        tabContent[i].classList.add('d-none');
+      }
+    }
+  };
+    tabHeader.addEventListener('click', (event) => {
+      let target = event.target;
+      target = target.closest('.service-header-tab');
+      if (target){
+        tab.forEach((item, i) => {
+          if (item === target){
+            toogleTabContent(i)
+          }
+        });
+      }
+    });
+};
+tabs();
 });
 
