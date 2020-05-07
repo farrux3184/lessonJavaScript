@@ -254,8 +254,7 @@ const slider = () => {
 slider();
 // CALCULATED
 const calculated = () => {
-  const calcItem = document.querySelector('.calc-block'),
-  inputNumber = calcItem.querySelectorAll('.calc-item');
+  const inputNumber = document.querySelectorAll('.calc-item');
   inputNumber.forEach(el => {
     el.addEventListener('input', () => {
       el.value = el.value.replace(/[^0-9]/, '');
