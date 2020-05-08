@@ -254,8 +254,8 @@ const slider = () => {
 slider();
 // CALCULATED
 const calc = (price = 100) => {
-  const inputNumber = document.querySelectorAll('.calc-item'),
-      calcBlock = document.querySelector('.calc-block'),
+  const calcBlock = document.querySelector('.calc-block'),
+      inputNumber = calcBlock.querySelectorAll('input'),
       calcType = document.querySelector('.calc-type'),
       calcSquare = document.querySelector('.calc-square'),
       calcDay = document.querySelector('.calc-day'),
@@ -264,16 +264,16 @@ const calc = (price = 100) => {
 
   inputNumber.forEach(el => {
     el.addEventListener('input', () => {
-      el.value = el.value.replace(/[^0-9]/, '');
+      el.value = el.value.replace(/[^0-9]/);
     });
   });
   const countSum = () => {
     let total = 0,
     countValue = 1,
     dayValue = 1;
-    const tapeValue = calcType.options[calcType.selectedIndex],
+    const tapeValue = calcType.options[calcType.selectedIndex].value,
      squareValue = +calcSquare.value;
-console.log(tapeValue);
+
      if(calcCount.value > 1){
        countValue += (calcCount.value -1) / 10;
       }
@@ -294,12 +294,14 @@ console.log(tapeValue);
       const target = event.target;
       // if (target.matches('.calc-type') || target.matches('.calc-square') ||
       // target.matches('.calc-day') || target.matches('.calc-count')){
-      //   console.log(123);
+      //   countSum();
       // }
+
       // if (target === calcType || target === calcSquare ||
       //    target ===  calcDay || target === calcCount){
-      //      console.log(123);
+      //      countSum();
       //    }
+
       if(target.matches('select') || target.matches('input')){
         countSum();
       }
