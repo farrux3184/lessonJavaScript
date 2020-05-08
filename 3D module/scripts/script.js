@@ -287,7 +287,7 @@ const calc = (price = 100) => {
      if (tapeValue && squareValue){
        total = price * tapeValue * squareValue * countValue * dayValue;
      } 
-    totalValue.textContent = total;
+    totalValue.textContent = Math.floor(total);
   };
 
     calcBlock.addEventListener('change', (event) => {
