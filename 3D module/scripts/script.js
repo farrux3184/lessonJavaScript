@@ -335,24 +335,33 @@ let att;
   // VALIDATED
   const valid = new Validator({
     selector: '#form1',
-    // selector: '#form2',
-    // selector: '#form3',
     pattern: {
-      cirilic: /^[а-яА-ЯёЁa]+$/
+      cirilic: /^[а-яА-ЯёЁa]+$/,
+      phone: /^\+?[78]([-()]*\d){10}$/,
+      email: /^\w+@\w+\.\w{2,}$/
     },
     method: {
       'form1-name': [
          ['notEmpty'],
          ['pattern', 'cirilic']
+       ],
+       'form1-phone': [
+         ['notEmpty'],
+         ['pattern', 'phone']
+       ],
+       'form1-email': [
+         ['notEmpty'],
+         ['pattern', 'email']
        ]
-        
     }
   });
   valid.init();
   const valid2 = new Validator({
     selector: '#form2',
     pattern: {
-      cirilic: /^[а-яА-ЯёЁa]+$/
+      cirilic: /^[а-яА-ЯёЁa]+$/,
+      phone: /^\+?[78]([-()]*\d){10}$/,
+      email: /^\w+@\w+\.\w{2,}$/
     },
     method: {
       'form2-name': [
@@ -363,6 +372,14 @@ let att;
           ['notEmpty'],
           ['pattern', 'cirilic']
         ],
+        'form2-phone': [
+          ['notEmpty'],
+          ['pattern', 'phone']
+        ],
+        'form2-email': [
+          ['notEmpty'],
+          ['pattern', 'email']
+        ]
     }
   });
   valid2.init();
@@ -370,11 +387,21 @@ const valid3 = new Validator({
   selector: '#form3',
   pattern: {
     cirilic: /^[а-яА-ЯёЁa]+$/,
+    phone: /^\+?[78]([-()]*\d){10}$/,
+    email: /^\w+@\w+\.\w{2,}$/
   },
   method: {
     'form3-name': [
       ['notEmpty'],
       ['pattern', 'cirilic']
+    ],
+    'form3-phone': [
+      ['notEmpty'],
+      ['pattern', 'phone']
+    ],
+    'form3-email': [
+      ['notEmpty'],
+      ['pattern', 'email']
     ]
   }
 });
