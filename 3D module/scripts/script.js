@@ -332,5 +332,52 @@ let att;
 };
   command();
 
+  // VALIDATED
+  const valid = new Validator({
+    selector: '#form1',
+    // selector: '#form2',
+    // selector: '#form3',
+    pattern: {
+      cirilic: /^[а-яА-ЯёЁa]+$/
+    },
+    method: {
+      'form1-name': [
+         ['notEmpty'],
+         ['pattern', 'cirilic']
+       ]
+        
+    }
+  });
+  valid.init();
+  const valid2 = new Validator({
+    selector: '#form2',
+    pattern: {
+      cirilic: /^[а-яА-ЯёЁa]+$/
+    },
+    method: {
+      'form2-name': [
+        ['notEmpty'],
+        ['pattern', 'cirilic']
+      ],
+        'form2-message': [
+          ['notEmpty'],
+          ['pattern', 'cirilic']
+        ],
+    }
+  });
+  valid2.init();
+const valid3 = new Validator({
+  selector: '#form3',
+  pattern: {
+    cirilic: /^[а-яА-ЯёЁa]+$/,
+  },
+  method: {
+    'form3-name': [
+      ['notEmpty'],
+      ['pattern', 'cirilic']
+    ]
+  }
+});
+valid3.init();
 });
 
