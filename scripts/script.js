@@ -330,13 +330,13 @@ let att;
     })
   });
 };
-  command();
+command();
 
   // VALIDATED
   const valid = new Validator({
     selector: '#form1',
     pattern: {
-      cirilic: /^[а-яА-ЯёЁa]+$/,
+      cirilic: /^[а-яА-ЯёЁa '']+$/,
       phone: /^\+?[78]([-()]*\d){10}$/,
       email: /^\w+@\w+\.\w{2,}$/
     },
@@ -359,7 +359,7 @@ let att;
   const valid2 = new Validator({
     selector: '#form2',
     pattern: {
-      cirilic: /^[а-яА-ЯёЁa]+$/,
+      cirilic: /^[а-яА-ЯёЁa '']+$/,
       phone: /^\+?[78]([-()]*\d){10}$/,
       email: /^\w+@\w+\.\w{2,}$/
     },
@@ -386,7 +386,7 @@ let att;
 const valid3 = new Validator({
   selector: '#form3',
   pattern: {
-    cirilic: /^[а-яА-ЯёЁa]+$/,
+    cirilic: /^[а-яА-ЯёЁa '']+$/,
     phone: /^\+?[78]([-()]*\d){10}$/,
     email: /^\w+@\w+\.\w{2,}$/
   },
@@ -411,14 +411,190 @@ const sendForm = () => {
   const errorMessag = 'Что то пошло не так...',
     loadMessage = 'Загрузка...',
     successMessage = 'Спасибо! Мы с вами свяжемся!';
-  const form = document.getElementById('form1');
 
+  const form = document.getElementById('form1');
+      
   const statusMessage = document.createElement('div');
-  statusMessage.textContent = 'Тут будет сообщение!';
   statusMessage.style.cssText = 'font-size: 2rem';
-  form.appendChild(statusMessage);
+  const clearForm = () => {
+    const formName = document.getElementById('form1-name'),
+      formEmail = document.getElementById('form1-email'),
+      formPhone = document.getElementById('form1-phone');
+    formName.value = '';
+    formEmail.value = '';
+    formPhone.value = '';
+  };
+  form.addEventListener('submit', (event) => {
+    clearForm();
+    event.preventDefault();
+    form.appendChild(statusMessage);
+    statusMessage.textContent = loadMessage;
+    const formData = new FormData(form);
+
+  let body = {};
+  // for(let val of formData.entries()){
+  //   body[val[0]] = val[1]
+  // }
+  formData.forEach((val, key) => {
+      body[key] = val;
+  });
+  postData(body, 
+    () => {
+      statusMessage.textContent = successMessage;
+    }, 
+    (error) => {
+      statusMessage.textContent = errorMessag;
+      console.error(error);
+  }
+  );
+  
+ 
+});
+
+const postData = (body, outputData, errorData) => {
+  const request = new XMLHttpRequest();
+
+  request.addEventListener('readystatechange', () => {
+    if (request.readyState !== 4){
+      return;
+    }
+    if (request.status === 200){
+      outputData();
+    } else {
+      errorData(request.status);
+    }
+});
+  request.open('POST', './server.php');
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(JSON.stringify(body));
+}
 };
 sendForm();
+// SEND-ajax-form2
+const sendForm2 = () => {
+  const errorMessag = 'Что то пошло не так...',
+    loadMessage = 'Загрузка...',
+    successMessage = 'Спасибо! Мы с вами свяжемся!';
+
+  const form2 = document.getElementById('form2');
+
+  const statusMessage = document.createElement('div');
+  statusMessage.style.cssText = 'font-size: 2rem';
+
+  const clearForm = () => {
+    const formName = document.getElementById('form2-name'),
+      formEmail = document.getElementById('form2-email'),
+      formPhone = document.getElementById('form2-phone'),
+      formMessage = document.getElementById('form2-message');
+    formName.value = '';
+    formEmail.value = '';
+    formPhone.value = '';
+    formMessage.value = '';
+  };
+  form2.addEventListener('submit', (event) => {
+    clearForm();
+    event.preventDefault();
+    form2.appendChild(statusMessage);
+    statusMessage.textContent = loadMessage;
+    const formData2 = new FormData(form2);
+
+  let body = {};
+  formData2.forEach((val, key) => {
+      body[key] = val;
+  });
+  postData(body, 
+    () => {
+      statusMessage.textContent = successMessage;
+    }, 
+    (error) => {
+      statusMessage.textContent = errorMessag;
+      console.error(error);
+  }
+  );
+});
+
+const postData = (body, outputData, errorData) => {
+  const request = new XMLHttpRequest();
+
+  request.addEventListener('readystatechange', () => {
+    if (request.readyState !== 4){
+      return;
+    }
+    if (request.status === 200){
+      outputData();
+    } else {
+      errorData(request.status);
+    }
+});
+  request.open('POST', './server.php');
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(JSON.stringify(body));
+}
+};
+sendForm2();
+// SEND-ajax-form3
+const sendForm3 = () => {
+  const errorMessag = 'Что то пошло не так...',
+    loadMessage = 'Загрузка...',
+    successMessage = 'Спасибо! Мы с вами свяжемся!';
+
+  const form3 = document.getElementById('form3');
+
+  const statusMessage = document.createElement('div');
+  statusMessage.style.cssText = 'font-size: 2rem';
+  statusMessage.style.cssText = 'color: white';
+
+  const clearForm = () => {
+    const formName = document.getElementById('form3-name'),
+      formEmail = document.getElementById('form3-email'),
+      formPhone = document.getElementById('form3-phone');
+    formName.value = '';
+    formEmail.value = '';
+    formPhone.value = '';
+  };
+
+  form3.addEventListener('submit', (event) => {
+    clearForm();
+    event.preventDefault();
+    form3.appendChild(statusMessage);
+    statusMessage.textContent = loadMessage;
+    const formData3 = new FormData(form3);
+
+  let body = {};
+  formData3.forEach((val, key) => {
+      body[key] = val;
+  });
+  postData(body, 
+    () => {
+      statusMessage.textContent = successMessage;
+    }, 
+    (error) => {
+      statusMessage.textContent = errorMessag;
+      console.error(error);
+  }
+  );
+});
+
+const postData = (body, outputData, errorData) => {
+  const request = new XMLHttpRequest();
+
+  request.addEventListener('readystatechange', () => {
+    if (request.readyState !== 4){
+      return;
+    }
+    if (request.status === 200){
+      outputData();
+    } else {
+      errorData(request.status);
+    }
+});
+  request.open('POST', './server.php');
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(JSON.stringify(body));
+}
+};
+sendForm3();
+
 
 });
 
