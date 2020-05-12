@@ -417,20 +417,19 @@ const sendForm = () => {
   const statusMessage = document.createElement('div');
   statusMessage.style.cssText = 'font-size: 2rem';
   const clearForm = () => {
-    const formName = document.getElementById('form1-name'),
-      formEmail = document.getElementById('form1-email'),
-      formPhone = document.getElementById('form1-phone');
+  const formName = document.getElementById('form1-name'),
+    formEmail = document.getElementById('form1-email'),
+    formPhone = document.getElementById('form1-phone');
     formName.value = '';
     formEmail.value = '';
     formPhone.value = '';
-  };
+};
   form.addEventListener('submit', (event) => {
-    clearForm();
     event.preventDefault();
     form.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData = new FormData(form);
-
+    clearForm();
   let body = {};
   // for(let val of formData.entries()){
   //   body[val[0]] = val[1]
@@ -447,10 +446,8 @@ const sendForm = () => {
       console.error(error);
   }
   );
-  
- 
 });
-
+}
 const postData = (body, outputData, errorData) => {
   const request = new XMLHttpRequest();
 
@@ -467,7 +464,6 @@ const postData = (body, outputData, errorData) => {
   request.open('POST', './server.php');
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(body));
-}
 };
 sendForm();
 // SEND-ajax-form2
@@ -492,17 +488,16 @@ const sendForm2 = () => {
     formMessage.value = '';
   };
   form2.addEventListener('submit', (event) => {
-    clearForm();
     event.preventDefault();
     form2.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData2 = new FormData(form2);
-
+    clearForm();
   let body = {};
   formData2.forEach((val, key) => {
       body[key] = val;
   });
-  postData(body, 
+  postData2(body, 
     () => {
       statusMessage.textContent = successMessage;
     }, 
@@ -512,8 +507,8 @@ const sendForm2 = () => {
   }
   );
 });
-
-const postData = (body, outputData, errorData) => {
+}
+const postData2 = (body, outputData, errorData) => {
   const request = new XMLHttpRequest();
 
   request.addEventListener('readystatechange', () => {
@@ -529,7 +524,7 @@ const postData = (body, outputData, errorData) => {
   request.open('POST', './server.php');
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(body));
-}
+
 };
 sendForm2();
 // SEND-ajax-form3
@@ -552,19 +547,17 @@ const sendForm3 = () => {
     formEmail.value = '';
     formPhone.value = '';
   };
-
   form3.addEventListener('submit', (event) => {
-    clearForm();
     event.preventDefault();
     form3.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData3 = new FormData(form3);
-
-  let body = {};
+    clearForm();
+  let body3 = {};
   formData3.forEach((val, key) => {
-      body[key] = val;
+      body3[key] = val;
   });
-  postData(body, 
+  postData3(body3, 
     () => {
       statusMessage.textContent = successMessage;
     }, 
@@ -574,8 +567,8 @@ const sendForm3 = () => {
   }
   );
 });
-
-const postData = (body, outputData, errorData) => {
+}
+const postData3 = (body3, outputData, errorData) => {
   const request = new XMLHttpRequest();
 
   request.addEventListener('readystatechange', () => {
@@ -590,8 +583,8 @@ const postData = (body, outputData, errorData) => {
 });
   request.open('POST', './server.php');
   request.setRequestHeader('Content-Type', 'application/json');
-  request.send(JSON.stringify(body));
-}
+  request.send(JSON.stringify(body3));
+
 };
 sendForm3();
 
