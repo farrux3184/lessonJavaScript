@@ -447,7 +447,7 @@ const sendForm = () => {
   }
   );
 });
-}
+
 const postData = (body, outputData, errorData) => {
   const request = new XMLHttpRequest();
 
@@ -464,6 +464,7 @@ const postData = (body, outputData, errorData) => {
   request.open('POST', './server.php');
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(body));
+};
 };
 sendForm();
 // SEND-ajax-form2
