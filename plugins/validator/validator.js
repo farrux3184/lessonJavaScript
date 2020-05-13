@@ -21,7 +21,7 @@ class Validator{
 }
     });
   }
-
+ 
     isValid(elem){
       const validatorMethod = {
         notEmpty(elem){
@@ -32,11 +32,10 @@ class Validator{
         },
         pattern(elem, pattern){
           return pattern.test(elem.value);
-        }
+         }
       };
       if(this.method){
         const method = this.method[elem.id];
-      
       if(method) {
         return method.every( item => validatorMethod[item[0]](elem, this.pattern[item[1]]));
         }
@@ -45,17 +44,23 @@ class Validator{
       }
       return true;
     }
+   
     chekIt(event) {
+      const formBtn = document.querySelectorAll('.form-btn');
+      formBtn.forEach((elem, i) => {
       const target = event.target;
       if(this.isValid(target)){
         this.showSucces(target);
         this.error.delete(target);
+        elem.removeAttribute('disabled');
       }else{
         this.showError(target);
         this.error.add(target);
+        elem.setAttribute('disabled', 'true');
       }
+    })
     }
-
+  
   showError(elem){
     elem.classList.remove('success');
     elem.classList.add('error');
@@ -68,6 +73,9 @@ class Validator{
     elem.insertAdjacentElement('afterend', errorDiv);
   }
   showSucces(elem){
+    // console.log('showSucces: ', showSucces);
+    // const formBtn = document.querySelector('.form-btn').disable = true;
+    // console.log('formBtn: ', formBtn);
     elem.classList.remove('error');
     elem.classList.add('success');
     if (elem.nextElementSibling && elem.nextElementSibling.classList.contains('validator-error')) {

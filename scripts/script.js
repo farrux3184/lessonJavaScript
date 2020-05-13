@@ -407,189 +407,65 @@ const valid3 = new Validator({
 });
 valid3.init();
 // SEND-ajax-form
-const sendForm = () => {
+  const form1 = document.getElementById('form1'),
+    form2 = document.getElementById('form2'),
+    form3 = document.getElementById('form3');
+  const sendForm = (form) => {
   const errorMessag = 'Что то пошло не так...',
     loadMessage = 'Загрузка...',
     successMessage = 'Спасибо! Мы с вами свяжемся!';
-
-  const form = document.getElementById('form1');
-      
   const statusMessage = document.createElement('div');
   statusMessage.style.cssText = 'font-size: 2rem';
-  const clearForm = () => {
-  const formName = document.getElementById('form1-name'),
-    formEmail = document.getElementById('form1-email'),
-    formPhone = document.getElementById('form1-phone');
-    formName.value = '';
-    formEmail.value = '';
-    formPhone.value = '';
-};
-  form.addEventListener('submit', (event) => {
+
+form.addEventListener('submit', (event) => {
     event.preventDefault();
     form.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData = new FormData(form);
-    clearForm();
-  let body = {};
+
+    let body = {};
   // for(let val of formData.entries()){
   //   body[val[0]] = val[1]
   // }
-  formData.forEach((val, key) => {
+formData.forEach((val, key) => {
       body[key] = val;
   });
-  postData(body, 
-    () => {
-      statusMessage.textContent = successMessage;
-    }, 
-    (error) => {
-      statusMessage.textContent = errorMessag;
-      console.error(error);
-  }
-  );
+  postData(body).then(() => {
+    statusMessage.textContent = successMessage;
+  }).catch(error => {
+    statusMessage.textContent = errorMessag;
+    console.error(error);
+  });
 });
-
-const postData = (body, outputData, errorData) => {
+const postData = (body) => {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.open('POST', './server.php');
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify(body));
-
+ 
     request.addEventListener('readystatechange', () => {
       if (request.readyState !== 4){
         return;
       }
       if (request.status === 200){
-        outputData(successMessage);
+        resolve();
       } else {
-        errorData(errorMessag);
+        reject(request.status);
       }
   });
+  const inputs = form.querySelectorAll('input');
+  inputs.forEach((elem) => {
+    elem.value = '';
   });
-};
-};
-sendForm();
-// SEND-ajax-form2
-const sendForm2 = () => {
-  const errorMessag = 'Что то пошло не так...',
-    loadMessage = 'Загрузка...',
-    successMessage = 'Спасибо! Мы с вами свяжемся!';
-
-  const form2 = document.getElementById('form2');
-
-  const statusMessage = document.createElement('div');
-  statusMessage.style.cssText = 'font-size: 2rem';
-
-  const clearForm = () => {
-    const formName = document.getElementById('form2-name'),
-      formEmail = document.getElementById('form2-email'),
-      formPhone = document.getElementById('form2-phone'),
-      formMessage = document.getElementById('form2-message');
-    formName.value = '';
-    formEmail.value = '';
-    formPhone.value = '';
-    formMessage.value = '';
-  };
-  form2.addEventListener('submit', (event) => {
-    event.preventDefault();
-    form2.appendChild(statusMessage);
-    statusMessage.textContent = loadMessage;
-    const formData2 = new FormData(form2);
-    clearForm();
-  let body = {};
-  formData2.forEach((val, key) => {
-      body[key] = val;
-  });
-  postData2(body, 
-    () => {
-      statusMessage.textContent = successMessage;
-    }, 
-    (error) => {
-      statusMessage.textContent = errorMessag;
-      console.error(error);
-  }
-  );
-});
-}
-const postData2 = (body, outputData, errorData) => {
-  const request = new XMLHttpRequest();
-
-  request.addEventListener('readystatechange', () => {
-    if (request.readyState !== 4){
-      return;
-    }
-    if (request.status === 200){
-      outputData();
-    } else {
-      errorData(request.status);
-    }
-});
-  request.open('POST', './server.php');
-  request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(body));
-
-};
-sendForm2();
-// SEND-ajax-form3
-const sendForm3 = () => {
-  const errorMessag = 'Что то пошло не так...',
-    loadMessage = 'Загрузка...',
-    successMessage = 'Спасибо! Мы с вами свяжемся!';
-
-  const form3 = document.getElementById('form3');
-
-  const statusMessage = document.createElement('div');
-  statusMessage.style.cssText = 'font-size: 2rem';
-  statusMessage.style.cssText = 'color: white';
-
-  const clearForm = () => {
-    const formName = document.getElementById('form3-name'),
-      formEmail = document.getElementById('form3-email'),
-      formPhone = document.getElementById('form3-phone');
-    formName.value = '';
-    formEmail.value = '';
-    formPhone.value = '';
-  };
-  form3.addEventListener('submit', (event) => {
-    event.preventDefault();
-    form3.appendChild(statusMessage);
-    statusMessage.textContent = loadMessage;
-    const formData3 = new FormData(form3);
-    clearForm();
-  let body3 = {};
-  formData3.forEach((val, key) => {
-      body3[key] = val;
   });
-  postData3(body3, 
-    () => {
-      statusMessage.textContent = successMessage;
-    }, 
-    (error) => {
-      statusMessage.textContent = errorMessag;
-      console.error(error);
-  }
-  );
-});
-}
-const postData3 = (body3, outputData, errorData) => {
-  const request = new XMLHttpRequest();
-
-  request.addEventListener('readystatechange', () => {
-    if (request.readyState !== 4){
-      return;
-    }
-    if (request.status === 200){
-      outputData();
-    } else {
-      errorData(request.status);
-    }
-});
-  request.open('POST', './server.php');
-  request.setRequestHeader('Content-Type', 'application/json');
-  request.send(JSON.stringify(body3));
-
 };
-sendForm3();
+};
+sendForm(form1);
+sendForm(form2);
+sendForm(form3);
+
+
 
 
 });
