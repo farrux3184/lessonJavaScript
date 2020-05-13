@@ -422,42 +422,33 @@ form.addEventListener('submit', (event) => {
     form.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData = new FormData(form);
-
-    let body = {};
-  // for(let val of formData.entries()){
-  //   body[val[0]] = val[1]
-  // }
-formData.forEach((val, key) => {
-      body[key] = val;
-  });
-  postData(body).then(() => {
+    
+//     let body = {};
+//   // for(let val of formData.entries()){
+//   //   body[val[0]] = val[1]
+//   // }
+// formData.forEach((val, key) => {
+//       body[key] = val;
+//   });
+  postData(formData).then((response) => {
+    if(response.status !== 200){
+      throw new Error('status network not 200')
+    }
     statusMessage.textContent = successMessage;
   }).catch(error => {
     statusMessage.textContent = errorMessag;
     console.error(error);
   });
 });
-const postData = (body) => {
-  return new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
-    request.open('POST', './server.php');
-    request.setRequestHeader('Content-Type', 'application/json');
- 
-    request.addEventListener('readystatechange', () => {
-      if (request.readyState !== 4){
-        return;
-      }
-      if (request.status === 200){
-        resolve();
-      } else {
-        reject(request.status);
-      }
-  });
-  const inputs = form.querySelectorAll('input');
-  inputs.forEach((elem) => {
-    elem.value = '';
-  });
-  request.send(JSON.stringify(body));
+const postData = (formData) => {
+  return fetch('./server.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    // body: JSON.stringify(body)
+    body: formData
+
   });
 };
 };
