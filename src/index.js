@@ -1,5 +1,7 @@
 'use strict';
 
+// import 'nodelist-foreach-polyfill';
+
 import countTimer from './modules/countTimer';
 import toogleMenu from './modules/toogleMenu';
 import togglePopUp from './modules/togglePopUp';
