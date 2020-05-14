@@ -1,5 +1,13 @@
 'use strict';
 
+import countTimer from './modules/countTimer';
+import toogleMenu from './modules/toogleMenu';
+import togglePopUp from './modules/togglePopUp';
+import tabs from './modules/tabs';
+import slider from './modules/slider';
+import calc from './modules/calc';
+import command from './modules/command';
+import sendForm from './modules/sendForm';
 
 // TIMER
 countTimer('15 may 2020');
