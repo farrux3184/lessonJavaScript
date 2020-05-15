@@ -1,9 +1,9 @@
 {
   "name": "3dglo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
+    "watch": "webpack --watch",
     "dev": "webpack-dev-server --open --mode=development",
     "build": "webpack --mode=production"
   },
@@ -28,6 +28,17 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "nodelist-foreach-polyfill": "^1.2.0"
-  }
+    "@babel/polyfill": "^7.8.7",
+    "classlist-polyfill": "^1.2.0",
+    "element-closest": "^3.0.2",
+    "es6-promise": "^4.2.8",
+    "fetch-polyfill": "^0.8.2",
+    "formdata-polyfill": "^3.0.19",
+    "nodelist-foreach-polyfill": "^1.2.0",
+    "parent-node-prepend-polyfill": "^1.0.0",
+    "polyfill": "^0.1.0",
+    "validate": "^5.1.0",
+    "validator": "^13.0.0"
+  },
+  "description": ""
 }
