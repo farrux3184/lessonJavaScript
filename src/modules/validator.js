@@ -1,7 +1,7 @@
 const validator = () => {
   const inputs = document.querySelectorAll('input[name]'),
     button = document.querySelectorAll('.btn');
-    
+   
   for (let input of inputs){
   input.addEventListener('blur', function(){
         let name = this.name;
@@ -25,37 +25,37 @@ const validator = () => {
     break;
     }
   if (check) {
+    button.forEach((item) => {
+      item.removeAttribute('disabled');
+    });
    if (input.nextElementSibling && input.nextElementSibling.classList.contains('validator-error')){
       input.nextElementSibling.remove();
    }else {
      return;
    }
-   button.forEach((item) => {
-    item.removeAttribute('disabled', 'false');
-  });
   } else {
+    button.forEach((item) => {
+      item.setAttribute('disabled', 'true');
+    });
   if (input.nextElementSibling && input.nextElementSibling.classList.contains('validator-error')) {
   return;
   }
-  button.forEach((item) => {
-    item.setAttribute('disabled', 'true');
-  });
-  const errorDiv = document.createElement('div');
-  errorDiv.textContent = 'Ошибка в этом поле';
-  errorDiv.classList.add('validator-error');
-  input.insertAdjacentElement('afterend', errorDiv);
-          }
-  const style = document.createElement('style');
-  style.textContent = `
-  .validator-error {
-  font-size: 12px;
-  font-family: sans-serif;
-  color: red
+    const errorDiv = document.createElement('div');
+    errorDiv.textContent = 'Ошибка в этом поле';
+    errorDiv.classList.add('validator-error');
+    input.insertAdjacentElement('afterend', errorDiv);
+  }
+    const style = document.createElement('style');
+    style.textContent = `
+    .validator-error {
+    font-size: 12px;
+    font-family: sans-serif;
+    color: red
   }
   `;
   document.head.appendChild(style);
+
       });
   }
-  
 };
 export default validator;

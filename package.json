@@ -37,6 +37,7 @@
     "nodelist-foreach-polyfill": "^1.2.0",
     "parent-node-prepend-polyfill": "^1.0.0",
     "polyfill": "^0.1.0",
+    "remove-polyfill": "^1.0.0",
     "validate": "^5.1.0",
     "validator": "^13.0.0"
   },

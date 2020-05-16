@@ -12,6 +12,7 @@ import 'parent-node-prepend-polyfill';
 // import 'validator';
 // import 'validate';
 // import 'classlist-polyfill';
+// import 'remove-polyfill';
 
 import countTimer from './modules/countTimer';
 import toogleMenu from './modules/toogleMenu';

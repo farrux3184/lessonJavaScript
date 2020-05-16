@@ -19,11 +19,11 @@ const togglePopUp = () => {
               clearInterval(timer);
             }
             draw(timePassed); 
-          });
+          }, 3);
           let draw = (timePassed) => {
             let wContent = +getComputedStyle(popupCont).width.split('px')[0]; 
-            wContent = -wContent / 2 + 50 + 'px'; 
-            popupCont.style.left = timePassed / 16 + '%'; 
+            wContent = -wContent / 20 + 50 + 'px'; 
+            popupCont.style.left = timePassed / 15 + '%'; 
             popupCont.style.marginLeft = wContent; 
           };
         }
