@@ -23,7 +23,7 @@ const togglePopUp = () => {
           let draw = (timePassed) => {
             let wContent = +getComputedStyle(popupCont).width.split('px')[0]; 
             wContent = -wContent / 20 + 50 + 'px'; 
-            popupCont.style.left = timePassed / 15 + '%'; 
+            popupCont.style.left = timePassed / 22 + '%'; 
             popupCont.style.marginLeft = wContent; 
           };
         }

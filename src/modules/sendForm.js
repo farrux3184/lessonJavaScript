@@ -4,14 +4,19 @@ const sendForm = (form) => {
     loadMessage = 'Загрузка...',
     successMessage = 'Спасибо! Мы с вами свяжемся!';
   const statusMessage = document.createElement('div');
-  statusMessage.style.cssText = 'font-size: 2rem';
+  statusMessage.style.cssText = `font-size: 2rem; color: white;`;
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     form.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData = new FormData(form);
+    const input = document.querySelectorAll('input');
+    input.forEach((item) => {
+      item.value = '';
+    });
     
+     
   postData(formData).then((response) => {
     if(response.status !== 200){
       throw new Error('status network not 200')
@@ -28,7 +33,7 @@ const postData = (formData) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    // body: JSON.stringify(body)
+  
     body: formData
 
   });

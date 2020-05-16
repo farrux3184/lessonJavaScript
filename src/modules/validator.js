@@ -21,7 +21,7 @@ const validator = () => {
     check = /^\+?[78]([-()]*\d){10}$/.test(value);
     break;
     case 'user_message':
-    check = /^[а-яА-ЯёЁa]+$/.test(value);
+    check = /^[а-яА-ЯёЁa '']+$/.test(value);
     break;
     }
   if (check) {
